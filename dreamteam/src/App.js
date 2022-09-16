@@ -9,6 +9,7 @@ import Home from './components/Home/Home'
 import CreatePlayer from './components/CreatePlayer/CreatePlayer'
 import CreateTeam from './components/CreateTeam/CreateTeam'
 import Teams from './components/Teams/Teams'
+import TeamDetails from './components/TeamDetails/TeamDetails'
 import './styles/app.css'
 
 function App() {
@@ -65,6 +66,10 @@ function App() {
           />
           <Route path="/createteam" element={<CreateTeam />} />
           <Route path="/createplayer" element={<CreatePlayer />} />
+          <Route
+            path="/teamdetails/:id"
+            element={<TeamDetails user={user} authenticated={authenticated} />}
+          />
         </Routes>
       </main>
     </div>
