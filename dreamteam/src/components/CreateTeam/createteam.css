@@ -1,47 +1,46 @@
-#popup {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  padding: 50px;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, .3);
-  background: #fff;
-  /* visibility: hidden; */
-  /* opacity: 0; */
-  transition: 0.5s;
-  z-index: 1000;
-  backdrop-filter: blur(20px);
-
+#dashboard{
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  width: 100vw;
+  align-items: center;    
 }
 
-.popUpButtons {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  display: inline-block;
-  outline: 0;
-  border: 0;
-  cursor: pointer;
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
-  will-change: box-shadow, transform;
-  background: #FCFCFD;
-  box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
-  height: 48px;
-  padding: 0 32px;
-  font-size: 18px;
-  border-radius: 6px;
-  color: #36395a;
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+.createTeamForm{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  position: relative;
 }
 
-.popUpButtons:hover {
-  box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
-  transform: translateY(-2px);
+#teamInner{
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* background-color: #f3f5fb; */
 }
 
-.popUpButtons:active {
-  box-shadow: inset 0px 3px 7px #d6d6e7;
-  transform: translateY(2px);
+#form-submit,
+input[id="createTeamName"]{
+ width : 25vh;
+  padding: 5px;
+  margin: 10px;
+  box-sizing: border-box;
+  display: block;
+  border-radius: 1em;
+}
+
+#teamContainer{
+  width: 80vw;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+#Form{
+  position: relative;
+  top:-80px;
 }
 
 h4 {

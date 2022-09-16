@@ -1,0 +1,38 @@
+#homeContent{
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: 100vh;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+h2 {
+  font-size: 15px;
+  display: flex;
+  align-items:baseline;
+  margin-left: 10%;
+  
+}
+
+.blur{
+  pointer-events: none;
+  animation: blurTime 1.0s forwards;
+}
+.blurRemove{
+  animation: removeBlur 1.0s forwards;
+}
+@keyframes removeBlur {
+  0% {filter: blur(20px);}
+  100% {filter: blur(0px);}
+}
+@keyframes blurTime {
+  0% {filter: blur(0px);}
+  100% {filter: blur(20px);}
+}

@@ -55,11 +55,13 @@ function App() {
             }
           />
           <Route path="/register" element={<Register />} />
+          <Route path="/teams" element={<Teams />} />
           <Route
             path="/home"
             element={<Home user={user} authenticated={authenticated} />}
           />
           <Route path="/createteam" element={<CreateTeam />} />
+          <Route path="/createplayer" element={<CreatePlayer />} />
         </Routes>
       </main>
     </div>
