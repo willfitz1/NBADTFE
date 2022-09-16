@@ -43,7 +43,7 @@ const CreatePlayer = ({ player }) => {
                 />
                 <input
                   id="age"
-                  type="text"
+                  type="number"
                   placeholder="Enter the player age here"
                   value={formValues.age}
                   onChange={handleChange}
@@ -57,7 +57,7 @@ const CreatePlayer = ({ player }) => {
                 />
                 <input
                   id="number"
-                  type="text"
+                  type="number"
                   placeholder="Enter the player number here"
                   value={formValues.number}
                   onChange={handleChange}
