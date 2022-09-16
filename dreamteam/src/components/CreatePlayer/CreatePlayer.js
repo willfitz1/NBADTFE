@@ -4,56 +4,27 @@ import { useNavigate } from 'react-router'
 import Client from '../../services/api'
 import './createplayer.css'
 
-const CreatePlayer = ({ user, authenticated }) => {
-  const [name, setName] = useState('')
-  const [age, setAge] = useState('')
-  const [position, setPosition] = useState('')
-  const [number, setNumber] = useState('')
+const CreatePlayer = ({ player }) => {
+  const navigate = useNavigate()
 
-  const [player, setPlayer] = useState([])
-  const [post, setPost] = useState(false)
+  const initialFormState = {
+    player: player,
+    name: '',
+    age: '',
+    position: '',
+    number: ''
+  }
 
-  const createplayer = async (e) => {
-    if (name) {
-      const res = await Client.post(`/team/${user._id}`, {
-        name: name,
-        age: age,
-        position: position,
-        number: number
-      })
-      setName('')
-      let tempArray = [...player]
-      let tempObj = { ...res.data, isEdit: false, isHover: false, ogUser: true }
-      tempArray.push(tempObj)
-      setPlayer(tempArray)
-      setPost(false)
-    }
+  const [formValues, setFormValues] = useState(initialFormState)
+
+  const handleChange = (e) => {
+    setFormValues({ ...formValues, [e.target.id]: e.target.value })
   }
-  const changeName = (event) => {
-    let n = event.target.value
-    setName(n)
-    if (name) {
-      setPost(true)
-    }
-  }
-  const changeAge = (event) => {
-    let n = event.target.value
-    setAge(n)
-    if (age) {
-      setPost(true)
-    }
-  }
-  const changePosition = (event) => {
-    let n = event.target.value
-    setPosition(n)
-  }
-  const changeNumber = (event) => {
-    let n = event.target.value
-    setNumber(n)
-  }
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    createplayer(e)
+    await Client.post(`/player/new`, formValues)
+    navigate(`/teams`)
   }
 
   return (
@@ -64,48 +35,32 @@ const CreatePlayer = ({ user, authenticated }) => {
             <div id="teamInner">
               <div>
                 <input
-                  className="teamFromInput"
+                  id="name"
                   type="text"
-                  value={name}
-                  onChange={changeName}
-                  name={'name'}
-                  placeholder={'Player Name'}
-                  id="createPlayerName"
-                  maxLength="15"
-                  required
+                  placeholder="Enter the player name here"
+                  value={formValues.name}
+                  onChange={handleChange}
                 />
                 <input
-                  className="teamFromInput"
+                  id="age"
                   type="text"
-                  value={age}
-                  onChange={changeAge}
-                  name={'age'}
-                  placeholder={'Player Age'}
-                  id="createPlayerAge"
-                  maxLength="15"
-                  required
+                  placeholder="Enter the player age here"
+                  value={formValues.age}
+                  onChange={handleChange}
                 />
                 <input
-                  className="teamFromInput"
+                  id="position"
                   type="text"
-                  value={position}
-                  onChange={changePosition}
-                  name={'position'}
-                  placeholder={'Player Position'}
-                  id="createPlayerPosition"
-                  maxLength="15"
-                  required
+                  placeholder="Enter the player position here"
+                  value={formValues.position}
+                  onChange={handleChange}
                 />
                 <input
-                  className="teamFromInput"
+                  id="number"
                   type="text"
-                  value={number}
-                  onChange={changeNumber}
-                  name={'number'}
-                  placeholder={'Player Number'}
-                  id="createPlayerNumber"
-                  maxLength="15"
-                  required
+                  placeholder="Enter the player number here"
+                  value={formValues.number}
+                  onChange={handleChange}
                 />
               </div>
               <div>
