@@ -55,7 +55,10 @@ function App() {
             }
           />
           <Route path="/register" element={<Register />} />
-          <Route path="/teams" element={<Teams />} />
+          <Route
+            path="/teams"
+            element={<Teams user={user} authenticated={authenticated} />}
+          />
           <Route
             path="/home"
             element={<Home user={user} authenticated={authenticated} />}
