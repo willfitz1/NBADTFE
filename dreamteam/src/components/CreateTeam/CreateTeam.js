@@ -30,7 +30,6 @@ const CreateTeam = ({ user }) => {
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="createTeamForm">
             <div id="teamInner">
-              <label htmlFor="title">Team: </label>
               <input
                 id="name"
                 type="text"
