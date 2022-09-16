@@ -1,7 +1,35 @@
 .team-card {
-  background-color: #EAECEC;
-  box-sizing: border-box;
-  border-radius: 25%;
-  margin: 5%;
-  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  padding: 5em;
+  width: 18em;
+  height: 30em;
+  background-color: #d3b8d1;
+  border-radius: 0.5em;
+  margin: 1em;
+  justify-content: space-around;
+  -webkit-box-shadow: 8px 0px 0px 0px #DCD0C0, 0px 8px 0px 0px #B1938B, -8px 0px 0px 0px #4E4E56, 0px 0px 0px 8px #DA635D, 5px 5px 15px 5px rgba(0,0,0,0); 
+  box-shadow: 8px 0px 0px 0px #DCD0C0, 0px 8px 0px 0px #B1938B, -8px 0px 0px 0px #4E4E56, 0px 0px 0px 8px #DA635D, 5px 5px 15px 5px rgba(0,0,0,0);
+  font-family: 'Georgia';
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.team-card:hover {
+  transform: scale(1.01);
+  border: dotted;
+}
+
+.team-card img {
+  width: 100%;
+  height: 10em;
+  object-fit: center;
+  box-shadow: inset 0 0 1em rgb(0, 0, 0);
+}
+
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
