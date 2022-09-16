@@ -12,7 +12,6 @@ const Nav = ({ user, authenticated, handleLogOut }) => {
           <div>
             <Link to="/teams">Teams</Link>
             <Link to="/createteam">Create A Team</Link>
-            <Link to="/createplayer">Create A Player</Link>
 
             <Link to="" onClick={() => handleLogOut()}>
               Log Out
