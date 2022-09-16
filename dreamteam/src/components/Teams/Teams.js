@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Client from '../../services/api'
 
 const Teams = (props) => {
   const [teams, setTeams] = useState([])
@@ -16,14 +17,14 @@ const Teams = (props) => {
   }, [])
 
   const handleDelete = async (id) => {
-    await axios.delete(`/team/${id}`)
+    await Client.delete(`/team/${id}`)
     console.log('banaana')
-    props.getItems()
+    props.getTeams()
   }
 
   return (
     <div className="team-grid">
-      {props.Teams?.map((team, index) => (
+      {teams?.map((team, index) => (
         <div className="team-card" key={team._id}>
           <h3>{team.name}</h3>
           <button onClick={() => handleDelete(team._id)}>Delete Team</button>

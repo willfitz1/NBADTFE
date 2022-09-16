@@ -10,7 +10,6 @@ const Home = () => {
         Welcome to 'Build a Team', an app where you create your own players and
         add them to your own teams.
       </h1>
-      <h2> Please sign in or login to get started</h2>
     </div>
   )
 }
