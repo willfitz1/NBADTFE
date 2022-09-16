@@ -4,36 +4,24 @@ import { useNavigate } from 'react-router'
 import Client from '../../services/api'
 import './createteam.css'
 
-const CreateTeam = ({ user, authenticated }) => {
+const CreateTeam = ({ user }) => {
   const navigate = useNavigate()
-  const [team, setTeam] = useState([])
-  const [usersTeam, setUsersTeam] = useState([])
-  const [name, setName] = useState('')
-  const [post, setPost] = useState(false)
 
-  const createteam = async (e) => {
-    if (name) {
-      const res = await Client.post(`/team/${user._id}`, {
-        name: name
-      })
-      setName('')
-      let tempArray = [...team]
-      let tempObj = { ...res.data, isEdit: false, isHover: false, ogUser: true }
-      tempArray.push(tempObj)
-      setTeam(tempArray)
-      setPost(false)
-    }
+  const initialFormState = {
+    user: user,
+    name: ''
   }
-  const changeName = (event) => {
-    let n = event.target.value
-    setName(n)
-    if (name) {
-      setPost(true)
-    }
+
+  const [formValues, setFormValues] = useState(initialFormState)
+
+  const handleChange = (e) => {
+    setFormValues({ ...formValues, [e.target.id]: e.target.value })
   }
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    createteam(e)
+    await Client.post(`/team/new`, formValues)
+    navigate(`/teams`)
   }
 
   return (
@@ -42,19 +30,14 @@ const CreateTeam = ({ user, authenticated }) => {
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="createTeamForm">
             <div id="teamInner">
-              <div>
-                <input
-                  className="teamFromInput"
-                  type="text"
-                  value={name}
-                  onChange={changeName}
-                  name={'name'}
-                  placeholder={'Create Team'}
-                  id="createTeamName"
-                  maxLength="15"
-                  required
-                />
-              </div>
+              <label htmlFor="title">Team: </label>
+              <input
+                id="name"
+                type="text"
+                placeholder="Enter the team name here"
+                value={formValues.name}
+                onChange={handleChange}
+              />
               <div>
                 <button id="form-submit">Create Team</button>
               </div>
