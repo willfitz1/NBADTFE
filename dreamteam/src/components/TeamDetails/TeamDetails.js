@@ -3,9 +3,14 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Client from '../../services/api'
 import { useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 
 const TeamDetails = ({ user, authenticated, teams }) => {
   const [players, setPlayers] = useState([])
+  const [name, setName] = useState([])
+  const [age, setAge] = useState([])
+  const [position, setPosition] = useState([])
+  const [number, setNumber] = useState([])
 
   let { id, index } = useParams()
 
@@ -16,7 +21,6 @@ const TeamDetails = ({ user, authenticated, teams }) => {
     age: '',
     position: '',
     number: ''
-    // team: teams[index].team
   }
 
   const [formValues, setFormValues] = useState(initialFormState)
@@ -57,9 +61,15 @@ const TeamDetails = ({ user, authenticated, teams }) => {
             <button onClick={() => handleDelete(player._id)}>
               Delete Player
             </button>
+            <Link to={`/teamDetails/${id}/${player._id}/editplayer`}>
+              <button>Update Player</button>
+            </Link>
           </div>
         ))}
       </div>
+      <Link to={`/teamDetails/${id}/createplayer`}>
+        <button>Add Player</button>
+      </Link>
     </div>
   )
 }

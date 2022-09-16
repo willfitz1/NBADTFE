@@ -10,11 +10,13 @@ import CreatePlayer from './components/CreatePlayer/CreatePlayer'
 import CreateTeam from './components/CreateTeam/CreateTeam'
 import Teams from './components/Teams/Teams'
 import TeamDetails from './components/TeamDetails/TeamDetails'
+import EditPlayer from './components/EditPlayer/EditPlayer'
 import './styles/app.css'
 
 function App() {
   const [authenticated, toggleAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
+  const [teams, setTeams] = useState([])
 
   const handleLogOut = () => {
     setUser(null)
@@ -58,7 +60,14 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route
             path="/teams"
-            element={<Teams user={user} authenticated={authenticated} />}
+            element={
+              <Teams
+                user={user}
+                authenticated={authenticated}
+                teams={teams}
+                setTeams={setTeams}
+              />
+            }
           />
           <Route
             path="/"
@@ -69,12 +78,23 @@ function App() {
             element={<CreateTeam user={user} authenticated={authenticated} />}
           />
           <Route
-            path="/createplayer"
-            element={<CreatePlayer user={user} authenticated={authenticated} />}
+            path="/teamDetails/:team_id/createplayer"
+            element={
+              <CreatePlayer
+                user={user}
+                authenticated={authenticated}
+                teams={teams}
+                setTeams={setTeams}
+              />
+            }
           />
           <Route
             path="/teamdetails/:id"
             element={<TeamDetails user={user} authenticated={authenticated} />}
+          />
+          <Route
+            path="/teamDetails/:team_id/:player_id/editplayer"
+            element={<EditPlayer user={user} authenticated={authenticated} />}
           />
         </Routes>
       </main>

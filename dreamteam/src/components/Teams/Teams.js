@@ -4,9 +4,7 @@ import axios from 'axios'
 import Client from '../../services/api'
 import { useParams } from 'react-router'
 
-const Teams = ({ user, authenticated }) => {
-  const [teams, setTeams] = useState([])
-
+const Teams = ({ user, authenticated, teams, setTeams }) => {
   let navigate = useNavigate()
   const goToTeamDetails = (id) => {
     navigate(`/teamdetails/${id}`)
@@ -37,7 +35,6 @@ const Teams = ({ user, authenticated }) => {
             View Team
           </button>
           <button onClick={() => handleDelete(team._id)}>Delete Team</button>
-          <button onClick={() => navigate('/createplayer')}>Add Player</button>
         </div>
       ))}
     </div>

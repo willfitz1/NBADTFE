@@ -5,13 +5,13 @@ import Client from '../../services/api'
 import './createplayer.css'
 import { useParams } from 'react-router'
 
-const CreatePlayer = ({ player }) => {
+const CreatePlayer = ({ teams, setTeams }) => {
   const navigate = useNavigate()
 
-  let { id } = useParams()
+  let { team_id } = useParams()
 
   const initialFormState = {
-    player: player,
+    team: team_id,
     name: '',
     age: '',
     position: '',
@@ -26,14 +26,15 @@ const CreatePlayer = ({ player }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await Client.post(`/player/new/${id}`, formValues)
+    await Client.post(`/player/new`, formValues)
+    console.log(team_id)
     navigate(`/teams`)
   }
 
   return (
     <div id="dashboard">
       <div id="form">
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={handleSubmit}>
           <div className="createPlayerForm">
             <div id="teamInner">
               <div>
