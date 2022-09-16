@@ -6,6 +6,9 @@ import React from 'react'
 import Register from './components/Register/Register'
 import SignIn from './components/Signin/Signin'
 import Home from './components/Home/Home'
+import CreatePlayer from './components/CreatePlayer/CreatePlayer'
+import CreateTeam from './components/CreateTeam/CreateTeam'
+import Teams from './components/Teams/Teams'
 import './styles/app.css'
 
 function App() {
@@ -56,6 +59,7 @@ function App() {
             path="/home"
             element={<Home user={user} authenticated={authenticated} />}
           />
+          <Route path="/createteam" element={<CreateTeam />} />
         </Routes>
       </main>
     </div>

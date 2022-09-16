@@ -1,9 +1,6 @@
-import { useNavigate } from 'react-router-dom'
 import './home.css'
 
-const Feed = ({ latestJobPosts }) => {
-  let navigate = useNavigate()
-
+const Home = () => {
   return (
     <div>
       <div>
@@ -23,19 +20,8 @@ const Feed = ({ latestJobPosts }) => {
           review job postings.
         </p>
       </div>
-      <div className="latest-jobs-grid">
-        {latestJobPosts?.map((jobPost) => (
-          <div className="jobPost-card" key={jobPost._id}>
-            <h2>{jobPost.title}</h2>
-            <h3>Salary: {jobPost.salary}</h3>
-            <button className="button" onClick={() => navigate('/login')}>
-              Login to view details about this posting
-            </button>
-          </div>
-        ))}
-      </div>
     </div>
   )
 }
 
-export default Feed
+export default Home
