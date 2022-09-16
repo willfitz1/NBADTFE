@@ -18,15 +18,15 @@ const Teams = ({ user, authenticated }) => {
     console.log(res.data)
   }
 
-  useEffect(() => {
-    getTeams()
-  }, [user])
-
   const handleDelete = async (id) => {
     await Client.delete(`/team/${id}`)
     console.log('team deleted')
     getTeams()
   }
+
+  useEffect(() => {
+    getTeams()
+  }, [user])
 
   return (
     <div className="team-grid">
@@ -37,6 +37,7 @@ const Teams = ({ user, authenticated }) => {
             View Team
           </button>
           <button onClick={() => handleDelete(team._id)}>Delete Team</button>
+          <button onClick={() => navigate('/createplayer')}>Add Player</button>
         </div>
       ))}
     </div>

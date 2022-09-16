@@ -3,9 +3,12 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import Client from '../../services/api'
 import './createplayer.css'
+import { useParams } from 'react-router'
 
 const CreatePlayer = ({ player }) => {
   const navigate = useNavigate()
+
+  let { id } = useParams()
 
   const initialFormState = {
     player: player,
@@ -23,7 +26,7 @@ const CreatePlayer = ({ player }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await Client.post(`/player/new`, formValues)
+    await Client.post(`/player/new/${id}`, formValues)
     navigate(`/teams`)
   }
 

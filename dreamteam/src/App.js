@@ -61,11 +61,17 @@ function App() {
             element={<Teams user={user} authenticated={authenticated} />}
           />
           <Route
-            path="/home"
+            path="/"
             element={<Home user={user} authenticated={authenticated} />}
           />
-          <Route path="/createteam" element={<CreateTeam />} />
-          <Route path="/createplayer" element={<CreatePlayer />} />
+          <Route
+            path="/createteam"
+            element={<CreateTeam user={user} authenticated={authenticated} />}
+          />
+          <Route
+            path="/createplayer"
+            element={<CreatePlayer user={user} authenticated={authenticated} />}
+          />
           <Route
             path="/teamdetails/:id"
             element={<TeamDetails user={user} authenticated={authenticated} />}
