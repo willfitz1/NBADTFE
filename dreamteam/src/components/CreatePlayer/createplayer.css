@@ -22,10 +22,10 @@
 }
 
 #form-submit,
-input[id="createPlayerName"],
-input[id="createPlayerAge"],
-input[id="createPlayerPosition"],
-input[id="createPlayerNumber"]{
+input[id="name"],
+input[id="age"],
+input[id="position"],
+input[id="number"]{
  width : 25vh;
   padding: 5px;
   margin: 10px;
