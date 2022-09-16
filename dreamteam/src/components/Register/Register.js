@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { RegisterUser } from '../services/auth'
-import { useNavigate } from 'react-router'
+import { RegisterUser } from '../../services/auth'
+import { useNavigate } from 'react-router-dom'
+import './register.css'
 
-const Register = () => {
+const SignUp = () => {
   let navigate = useNavigate()
-
   const [formValues, setFormValues] = useState({
     username: '',
     email: '',
@@ -33,17 +33,21 @@ const Register = () => {
   }
 
   return (
-    <div className="signin col">
+    <div className="signupCol">
       <div className="card-overlay centered">
-        <form className="col" onSubmit={handleSubmit}>
+        <form className="signUpForm" onSubmit={handleSubmit}>
           <div className="input-wrapper">
-            <label htmlFor="name">Username</label>
+            <h3 id="signUpTitle">Register Today!</h3>
+          </div>
+          <div className="input-wrapper">
+            <label htmlFor="username">Username</label>
             <input
               onChange={handleChange}
               name="username"
               type="text"
-              // placeholder="John Smith"
+              placeholder=""
               value={formValues.username}
+              id="signUpValues"
               required
             />
           </div>
@@ -52,9 +56,10 @@ const Register = () => {
             <input
               onChange={handleChange}
               name="email"
-              type="email"
-              // placeholder="example@example.com"
+              type="text"
+              placeholder="example@example.com"
               value={formValues.email}
+              id="signUpValues"
               required
             />
           </div>
@@ -63,9 +68,10 @@ const Register = () => {
             <label htmlFor="password">Password</label>
             <input
               onChange={handleChange}
-              type="password"
+              type="text"
               name="password"
               value={formValues.password}
+              id="signUpValues"
               required
             />
           </div>
@@ -73,20 +79,22 @@ const Register = () => {
             <label htmlFor="confirmPassword">Confirm Password</label>
             <input
               onChange={handleChange}
-              type="password"
+              type="text"
               name="confirmPassword"
               value={formValues.confirmPassword}
+              id="signUpValues"
               required
             />
           </div>
           <button
+            id="registerButton"
             disabled={
               !formValues.email ||
               (!formValues.password &&
                 formValues.confirmPassword === formValues.password)
             }
           >
-            Sign In
+            Register
           </button>
         </form>
       </div>
@@ -94,4 +102,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default SignUp

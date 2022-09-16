@@ -1,8 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router'
-// import Navbar from './components/Nav'
+import { CheckSession } from './services/auth'
+import Nav from './components/Nav/Nav'
 import React from 'react'
-import Register from './components/Register'
+import Register from './components/Register/Register'
+import SignIn from './components/Signin/Signin'
+import Home from './components/Home/Home'
+import './styles/app.css'
 
 function App() {
   const [authenticated, toggleAuthenticated] = useState(false)
@@ -14,19 +18,44 @@ function App() {
     localStorage.clear()
   }
 
+  const checkToken = async () => {
+    const user = await CheckSession()
+    setUser(user)
+    toggleAuthenticated(true)
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      checkToken()
+    }
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
-        {/* <Navbar
+        <Nav
           authenticated={authenticated}
           user={user}
           handleLogOut={handleLogOut}
-        /> */}
+        />
       </header>
       <main>
         <Routes>
-          {/* <SignIn setUser={setUser} toggleAuthenticated={toggleAuthenticated} /> */}
+          <Route
+            path="/signin"
+            element={
+              <SignIn
+                setUser={setUser}
+                toggleAuthenticated={toggleAuthenticated}
+              />
+            }
+          />
           <Route path="/register" element={<Register />} />
+          <Route
+            path="/home"
+            element={<Home user={user} authenticated={authenticated} />}
+          />
         </Routes>
       </main>
     </div>
