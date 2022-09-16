@@ -4,10 +4,31 @@ import axios from 'axios'
 import Client from '../../services/api'
 import { useParams } from 'react-router'
 
-const TeamDetails = ({ user, authenticated }) => {
+const TeamDetails = ({ user, authenticated, teams }) => {
   const [players, setPlayers] = useState([])
 
-  let { id } = useParams()
+  let { id, index } = useParams()
+
+  const navigate = useNavigate()
+
+  const initialFormState = {
+    name: '',
+    age: '',
+    position: '',
+    number: ''
+    // team: teams[index].team
+  }
+
+  const [formValues, setFormValues] = useState(initialFormState)
+
+  const handleChange = (e) => {
+    setFormValues({ ...formValues, [e.target.id]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    await Client.post(`/player/new/${id}`, formValues)
+  }
 
   const getPlayers = async () => {
     const res = await Client.get(`http://localhost:3001/api/player/${id}`)
@@ -25,18 +46,20 @@ const TeamDetails = ({ user, authenticated }) => {
   }
 
   return (
-    <div className="team-grid">
-      {players.players?.map((player, index) => (
-        <div className="team-card" key={player._id}>
-          <h3>{player.name}</h3>
-          <h3>{player.age}</h3>
-          <h3>{player.position}</h3>
-          <h3>{player.number}</h3>
-          <button onClick={() => handleDelete(player._id)}>
-            Delete Player
-          </button>
-        </div>
-      ))}
+    <div>
+      <div className="team-grid">
+        {players.players?.map((player, index) => (
+          <div className="team-card" key={player._id}>
+            <h3>{player.name}</h3>
+            <h3>{player.age}</h3>
+            <h3>{player.position}</h3>
+            <h3>{player.number}</h3>
+            <button onClick={() => handleDelete(player._id)}>
+              Delete Player
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
